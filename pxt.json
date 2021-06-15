@@ -1,6 +1,6 @@
 {
     "name": "DFRobot_Traffic_Light_Module",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "",
     "dependencies": {
         "core": "*",
