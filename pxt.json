@@ -1,5 +1,5 @@
 {
-    "name": "pxt-DFRobot_Traffic_Light_Module",
+    "name": "DFRobot_Traffic_Light_Module",
     "version": "0.0.2",
     "description": "",
     "dependencies": {
@@ -11,6 +11,7 @@
         "main.blocks",
         "main.ts",
         "README.md",
+        "_locales/zh/DFRobot_Traffic_Light_Module-strings.json",
         "custom.ts"
     ],
     "testFiles": [
