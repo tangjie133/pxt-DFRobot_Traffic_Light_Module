@@ -13,7 +13,8 @@
   "custom.updateModuleTime|block": "跟新模块时间 时 %hour 分 %minute 秒 %second",
   "custom.changeDefaultRYGTime|block": "修改显示时间 红 %rtime 黄 %ytime 绿 %gtime",
   "custom.ifLightIsOn|block": "获取灯 %light 状态",
-  "custom|block":"交通灯"
+  "custom|block":"交通灯",
+    "custom.seti2cAddr|block": "设置I2C地址 %addr"
 
   
 }

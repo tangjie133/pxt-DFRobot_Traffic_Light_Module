@@ -26,7 +26,7 @@ enum MyEnumTime {
  */
 //% weight=100 color=#0fbc11 icon="" block="Traffic Light"
 namespace custom {
-    let addrI2C = 0x54;
+    let addrI2C=0;
     
     let _beginHour:number=0;
     let _beginMinute:number=0;
@@ -46,7 +46,7 @@ namespace custom {
     //% weight=99
     export function getNowTime(e:MyEnumTime): number {
         let buffer = readReg(0x0E,3);
-        basic.pause(100)
+        basic.pause(300)
         let data;
         switch(e){
             case MyEnumTime.Hour:
@@ -74,7 +74,7 @@ namespace custom {
         buffer[0]=0x11;
         buffer[1]=1;
         writeReg(buffer);
-        basic.pause(100)
+        basic.pause(300)
     }
 
     /** 
@@ -131,14 +131,14 @@ namespace custom {
         buffer[0] = 0X0A;
         buffer[1] = 1;
         writeReg(buffer);
-        basic.pause(100)
+        basic.pause(300)
         let buffer1 = pins.createBuffer(4);
         buffer1[0] = 0X17;
         buffer1[1] = _beginHour;
         buffer1[2] = _beginMinute;
         buffer1[3] = _beginSecond;
         writeReg(buffer1);
-        basic.pause(100)
+        basic.pause(300)
       
         let buffer2 = pins.createBuffer(4);
         buffer2[0] = 0X0B;
@@ -146,7 +146,15 @@ namespace custom {
         buffer2[2] = _YTime;
         buffer2[3] = _GTime;
         writeReg(buffer2); 
-        basic.pause(100)
+        basic.pause(300)
+        // let a=readReg(0X17,3);
+        // for(let i =0;i<3;i++){
+        //     serial.writeValue("x", a[i])   
+        // }
+        //  let b=readReg(0X0B,3);
+        // for(let i =0;i<3;i++){
+        //     serial.writeValue("x", b[i])   
+        // }
     } 
     /**
      * TODO: 跟新MCU时间
@@ -160,14 +168,14 @@ namespace custom {
         buffer[0] = 0X09;
         buffer[1] = 1;
         writeReg(buffer);
-        basic.pause(1000)
+        basic.pause(300)
         let buffer1 = pins.createBuffer(4);
         buffer1[0] = 0X06;
         buffer1[1] = hour;
         buffer1[2] = minute;
         buffer1[3] = second;
         writeReg(buffer1);
-        basic.pause(1000)
+        basic.pause(300)
     }
     /**
      * TODO: 跟新默认红黄绿三色灯的持续时间
@@ -181,14 +189,14 @@ namespace custom {
         buffer[0]=0X13;
         buffer[1]=1;
         writeReg(buffer);
-        basic.pause(100)
+        basic.pause(300)
         let buffer1 = pins.createBuffer(4);
         buffer1[0] = 0X14;
         buffer1[1] = rtime;
         buffer1[2] = ytime;
         buffer1[3] = gtime;
         writeReg(buffer1);
-        basic.pause(100)
+        basic.pause(300)
     }
     /**
      * TODO: 获取交通灯此时的状态
@@ -206,6 +214,16 @@ namespace custom {
             data = 0;
         }
         return data;
+    }
+    /**
+     * TODO: 设置I2C地址
+     * @param addr I2C地址 eg:0x54
+     * @return 返回灯状态
+     */
+    //% block="set i2c addr %addr"
+    //% weight=92
+    export function seti2cAddr(addr:number):void{
+        addrI2C = addr;
     }
 
     /**
